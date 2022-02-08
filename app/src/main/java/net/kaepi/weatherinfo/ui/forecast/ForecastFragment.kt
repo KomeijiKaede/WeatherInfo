@@ -5,23 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
-import net.kaepi.weatherinfo.databinding.FragmentHomeBinding
-import net.kaepi.weatherinfo.ui.home.tablayout.PagerAdapter
+import net.kaepi.weatherinfo.databinding.FragmentForecastBinding
+import net.kaepi.weatherinfo.ui.forecast.tablayout.PagerAdapter
 import net.kaepi.weatherinfo.values.TAB_TITLES
 
 class ForecastFragment : Fragment() {
-	private lateinit var viewModel: ForecastViewModel
-
-	private var _binding: FragmentHomeBinding? = null
+	private var _binding: FragmentForecastBinding? = null
 	private val binding get() = _binding!!
 
-	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-		viewModel = ViewModelProvider(this)[ForecastViewModel::class.java]
-
-		_binding = FragmentHomeBinding.inflate(inflater, container, false)
-		val root: View = binding.root
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+		_binding = FragmentForecastBinding.inflate(inflater, container, false)
 
 		val pagerAdapter = PagerAdapter(this)
 		binding.viewPager.adapter = pagerAdapter
@@ -29,6 +23,6 @@ class ForecastFragment : Fragment() {
 			tab.text = getString(TAB_TITLES[position])
 		}.attach()
 
-		return root
+		return binding.root
 	}
 }

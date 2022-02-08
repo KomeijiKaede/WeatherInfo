@@ -14,8 +14,8 @@ class WeatherInfoData {
 }
 
 interface WeatherService {
-	@GET("api/forecast/city/{id}")
-	suspend fun getWeather(@Path("id") id: String): Response<WeatherInfo>
+	@GET("api/forecast/city/{city}")
+	suspend fun getWeather(@Path("city") city: String): Response<WeatherInfo>
 }
 
 data class WeatherInfo(

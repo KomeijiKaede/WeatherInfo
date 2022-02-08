@@ -12,6 +12,12 @@
             tools:layout="@layout/fragment_home"/>
 
     <fragment
+            android:id="@+id/nav_forecast"
+            android:name="net.kaepi.weatherinfo.ui.forecast.ForecastFragment"
+            android:label="@string/menu_forecast"
+            tools:layout="@layout/fragment_home"/>
+
+    <fragment
             android:id="@+id/nav_setting"
             android:name="net.kaepi.weatherinfo.ui.setting.SettingFragment"
             android:label="@string/menu_setting"

@@ -38,23 +38,23 @@ class TabItemFragment : Fragment() {
 		Coil.setImageLoader(imageLoader)
 
 		WeatherInfoData.weatherInfo.observe(viewLifecycleOwner, Observer {
-			viewModel.forecast.postValue(it.forecasts[viewModel.getIndex()])
-		})
-
-		viewModel.forecast.observe(viewLifecycleOwner, Observer {
 			if (it != null) {
-				binding.icon.load(it.image.url)
+				val forecast = it.forecasts[viewModel.getIndex()]
 
-				binding.bodyText.text = WeatherInfoData.weatherInfo.value!!.description.bodyText
+				binding.title.text = it.title
+				binding.icon.load(forecast.image.url)
+				binding.telop.text = forecast.telop
 
-				binding.city.text = WeatherInfoData.areaData.value!!.name
-				binding.telop.text = it.telop
-				binding.date.text = it.date
+				val chanceOfRain = forecast.chanceOfRain
 
-				binding.t1.text = it.chanceOfRain.T00_06
-				binding.t2.text = it.chanceOfRain.T06_12
-				binding.t3.text = it.chanceOfRain.T12_18
-				binding.t4.text = it.chanceOfRain.T18_24
+				binding.t1.text = chanceOfRain.T00_06
+				binding.t2.text = chanceOfRain.T06_12
+				binding.t3.text = chanceOfRain.T12_18
+				binding.t4.text = chanceOfRain.T18_24
+
+				binding.weather.text = "詳細: ${forecast.detail.weather}"
+				binding.wind.text = "風向き: ${forecast.detail.wind}"
+				binding.wave.text = "波: ${forecast.detail.wave}"
 			}
 		})
 	}
